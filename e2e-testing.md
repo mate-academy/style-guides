@@ -8,8 +8,7 @@
   - [2.1. Define page locators outside the constructor](#21-define-page-locators-outside-the-constructor)
   - [2.2. Parametrized page URLs defining](#22-parametrized-page-urls-defining)
   - [2.3. Use Components to re-use common page element groups](#23-use-components-to-re-use-common-page-element-groups)
-  - [2.4. Do not use dynamic values in allure step text](#24-do-not-use-dynamic-values-in-allure-step-text)
-  - [2.5 Use fill instead of type](#25-use-fill-instead-of-type)
+  - [2.4 Use fill instead of type](#24-use-fill-instead-of-type)
 - [3\. Test scenarios](#3-test-scenarios)
   - [3.1. Use underscore separator for test folders naming](#31-use-underscore-separator-for-test-folders-naming)
   - [3.2. Use folders for test suite organization](#32-use-folders-for-test-suite-organization)
@@ -145,30 +144,7 @@ If you defined some common elements from the header, footer, sideBar, or some po
 
 
 
-#### 2.4. Do not use dynamic values in allure step text
-
-
-Do not use dynamic values in allure step text becuase that way new test case will be added to the Allure TestOps on each test re-run.
-
-```typescript
-// ❌ not recommended
-async typeCourseName(name: string): Promise<void> {
-  await test.step(`Type course name ${name}`, async () => {
-    await this.courseDropwDown.type(name);
-  });
-}
-
-
-// ✅ recommended
-async typeCourseName(name: string): Promise<void> {
-  await test.step('Type course name', async () => {
-    await this.courseDropwDown.type(name);
-  });
-}
-
-```
-
-#### 2.5. Use fill instead of type
+#### 2.4. Use fill instead of type
 
 
 Use `fill()` instead of `type()` method, as `type()` is deprecated in [playwright](https://playwright.dev/docs/api/class-locator#locator-type).
